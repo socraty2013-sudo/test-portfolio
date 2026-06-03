@@ -21,7 +21,7 @@ jobs:
           python-version: '3.12'  #冒号后面注意空格
 
       - run: pip install -r requirements.txt
-
+      - run: mkdir -p logs
       - run: pytest -v
 
 
