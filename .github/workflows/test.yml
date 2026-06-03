@@ -1,0 +1,25 @@
+# workflow 文件，拉代码 → 装 Python → 装依赖 → 跑测试。
+
+name: Pytest CI  #这一行就是工作流在 GitHub Actions 页面上显示的名字。
+
+#on = 什么时候触发。这里意思是：只要往 main 分支 push 代码，就自动跑。
+on:
+  push:
+    branches: [main]
+
+#jobs — 要执行的任务列表
+#test — 任务名字，随便取
+#runs-on: ubuntu-latest — GitHub 提供一台 Ubuntu 虚拟机来跑
+#actions/checkout@v4 — 第一步：把代码拉到虚拟机上（GitHub 官方提供的 action）
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4  # - 后面注意空格
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'  #冒号后面注意空格
+
+      - run: pip install -r requirements.txt
+
+      - run: pytest -v
