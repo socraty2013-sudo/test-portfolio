@@ -23,3 +23,7 @@ jobs:
       - run: pip install -r requirements.txt
 
       - run: pytest -v
+
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # github 上设置的无法使用 GITHUB开头的密钥命名
