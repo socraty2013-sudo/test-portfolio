@@ -1,7 +1,8 @@
+# 把不需要上传的东西排除掉
+
 venv/
 __pycache__/
 reports/
 logs/
 .DS_Store
-
-# 把不需要上传的东西排除掉
+git-note.md
