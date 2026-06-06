@@ -5,7 +5,8 @@ import pytest
 
 case_datas = [(False,60),(True,5000)]
 
-@pytest.mark.parametrize("use_token,expected_min",case_datas)
+# ids，是给参数的命名，一一对应。方便终端输出的打印查看。
+@pytest.mark.parametrize("use_token,expected_min",case_datas,ids=["无token", "有token"])
 def test_session_demo(use_token,expected_min):
     s = requests.Session()
     if use_token:
@@ -28,3 +29,10 @@ def test_session_persistence():
     res2 = s2.get("https://api.github.com/user")
     assert res2.status_code ==200
 
+@pytest.mark.skip   # 直接跳过，无理由
+def test_skip_demo():
+    assert 1 == 2  # 这行永远不会执行
+
+@pytest.mark.skipif("GIT_TOKEN" not in os.environ, reason="没配置token时，则不执行")
+def test_skipif_demo():
+    assert True

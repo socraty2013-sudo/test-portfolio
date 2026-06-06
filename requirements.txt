@@ -2,3 +2,4 @@ pytest
 requests
 jsonschema
 allure-pytest
+playwright

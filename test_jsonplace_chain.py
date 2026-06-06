@@ -1,6 +1,7 @@
 import jsonschema  # jsonschema:第三方库，与定义好的"结构规则"去比对 JSON 数据，不符合就报错
+import pytest
 
-
+@pytest.mark.xfail
 def test_jsonplace_chain(jsonplace_api):
     body = {"title": "foo", "body": "bar", "userId": 1}
     res = jsonplace_api.post(path="/posts", body=body)
@@ -10,8 +11,8 @@ def test_jsonplace_chain(jsonplace_api):
     res_check = jsonplace_api.get(path=f"/posts/{id}")
     data_check = res_check.json()
 
-    # assert data_check["title"] == "foo"
-    # assert data_check["body"] == "bar"
+    assert data_check["title"] == "foo"
+    assert data_check["body"] == "bar"
 
 def test_res_schema(jsonplace_api):
     res = jsonplace_api.get("/posts/1")
