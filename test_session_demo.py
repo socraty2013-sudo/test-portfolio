@@ -29,10 +29,11 @@ def test_session_persistence():
     res2 = s2.get("https://api.github.com/user")
     assert res2.status_code ==200
 
-@pytest.mark.skip   # 直接跳过，无理由
+@pytest.mark.skip   # 直接跳过，无理由。
 def test_skip_demo():
     assert 1 == 2  # 这行永远不会执行
 
 @pytest.mark.skipif("GIT_TOKEN" not in os.environ, reason="没配置token时，则不执行")
 def test_skipif_demo():
     assert True
+
